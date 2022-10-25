@@ -9,6 +9,12 @@ const isLoggedIn = require("./middlewares/isLoggedIn");
 // const authenticate = require("./middlewares/auth");
 // const session = require("express-session");
 
+// ("mongodb+srv://Omar:18PWcse16630316@cluster0.qxgva.mongodb.net/?retryWrites=true&w=majority");
+//"mongodb://localhost:27017/todo-app";
+
+const DB_URL =
+  "mongodb+srv://Omar:18PWcse16630316@cluster0.qxgva.mongodb.net/?retryWrites=true&w=majority";
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
@@ -17,7 +23,7 @@ app.use(cors());
 // );
 
 mongoose
-  .connect("mongodb://localhost:27017/todo-app", {
+  .connect(DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

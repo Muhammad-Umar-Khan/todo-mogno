@@ -1,9 +1,9 @@
-const PageNotFound = () => {
+const NoProjectsFound = () => {
   return (
     <div>
-      <p>Page not found</p>
+      <h1>This user does not have any projetcs</h1>
     </div>
   );
 };
 
-export default PageNotFound;
+export default NoProjectsFound;
