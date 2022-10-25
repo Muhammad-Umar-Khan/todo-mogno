@@ -33,7 +33,18 @@ const ListAllProTasks = ({ selected }) => {
   };
 
   return (
-    <div className="col-md-8" style={{ padding: 80 }}>
+    <div
+      className="col-md-8"
+      style={{
+        paddingLeft: 50,
+        marginTop: 20,
+        display: "flex",
+        flexWrap: "wrap",
+        textAlign: "center",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       {projects && projects.length >= 1 ? (
         <>
           <h1>All tasks</h1>
