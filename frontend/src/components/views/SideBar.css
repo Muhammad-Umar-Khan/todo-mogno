@@ -6,6 +6,17 @@
   background-color: #514392;
 }
 
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #514392;
+}
+
+.spinner img {
+  background-color: #514392;
+}
+
 .hrColor {
   /* color: #514392; */
   border-top: 1.5px solid #514392;

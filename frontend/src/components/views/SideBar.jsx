@@ -9,19 +9,21 @@ import './SideBar.css';
 import { getAllProTasks } from "../../store/actions/projectActions";
 import ProjectInput from "../projectComponents/ProjectInput";
 import ListAllProTasks from "../taskComponents/ListALLTasks";
+import isLoadingIcon from "../../assets/images/isLoading.gif";
 //sidebar component;
 
 const SideBar = () => {
+  const [loaded, setIsLoaded] = useState(undefined);
   const [selected, setSelected] = useState("");
-  const [addP, setAddP] = useState(false);
+  const [addP, setAddP] = useState("");
 
   const projects = useSelector((state) => state.projectReducer.projects);
   const dispatch = useDispatch();
   useEffect(() => {
     if(projects && projects.length > 1){
       const firstProject = projects[0];
-      setSelected(firstProject._id);
-      dispatch(getAllProTasks(selected));
+      dispatch(getAllProTasks(firstProject._id));
+      setIsLoaded(true)
     }
    
   }, [projects])
@@ -43,8 +45,9 @@ const SideBar = () => {
                 cursor="pointer"
                   key={project._id}
                   onClick={() => {
-                    setSelected(project._id);
+                    setSelected(project._id)
                     dispatch(getAllProTasks(project._id));
+                    setIsLoaded(true)
                   }}
                 >
                   <a style={{cursor: "pointer"}} className="nav-link px-2">{project.text}</a>
@@ -54,7 +57,10 @@ const SideBar = () => {
           </ul>
           <ProjectInput addP={addP} setAddP={setAddP}/>
         </div>
-        <ListAllProTasks selected = {selected}/>        
+        
+        {/* {isLoading ? <img style={{width: 200, height: 200}} src={isLoadingIcon}/> : <ListAllProTasks selected = {selected}/>} */}
+        {loaded ? <ListAllProTasks selected = {selected}/>: <div className="spinner"><img style={{width: 200, height: 200}} src={isLoadingIcon}/></div>}
+        
       </div>      
     </div>
   );
