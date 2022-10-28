@@ -1,7 +1,8 @@
 const User = require("../models/users");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const session = require("express-session");
+// const session = require("express-session");
+const secret = process.env.SECRET;
 
 exports.register = async (req, res) => {
   try {
@@ -18,7 +19,7 @@ exports.register = async (req, res) => {
 
     return res.status(200).send({
       user,
-      token: jwt.sign({ user }, "loginsecret", {
+      token: jwt.sign({ user }, secret, {
         expiresIn: "24h",
       }),
       message: "registred user successfully",
@@ -38,7 +39,7 @@ exports.login = async (req, res) => {
     const valid = await bcrypt.compare(password, user.password);
 
     if (valid) {
-      const token = jwt.sign({ user }, "loginsecret", {
+      const token = jwt.sign({ user }, secret, {
         expiresIn: "24h",
       });
 

@@ -18,7 +18,7 @@ app.use(cors());
 // );
 
 mongoose
-  .connect(DB_URL, {
+  .connect(DB_URL || "mongodb://localhost:27017/todo-app", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
