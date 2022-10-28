@@ -29,7 +29,6 @@ exports.createTask = async (req, res) => {
 exports.updateTask = async (req, res) => {
   const { id } = req.params;
   const { update } = req.body;
-  console.log(update);
   await Task.updateOne({ _id: id }, { $set: { text: update } });
   res.status(200).send("success");
 };

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
@@ -6,14 +7,8 @@ const userController = require("./controllers/userController");
 const projectControllers = require("./controllers/projectControllers");
 const cors = require("cors");
 const isLoggedIn = require("./middlewares/isLoggedIn");
-// const authenticate = require("./middlewares/auth");
-// const session = require("express-session");
 
-// ("mongodb+srv://Omar:18PWcse16630316@cluster0.qxgva.mongodb.net/?retryWrites=true&w=majority");
-//"mongodb://localhost:27017/todo-app";
-
-const DB_URL =
-  "mongodb+srv://Omar:18PWcse16630316@cluster0.qxgva.mongodb.net/?retryWrites=true&w=majority";
+const DB_URL = process.env.DB_URL;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
